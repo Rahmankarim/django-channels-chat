@@ -1,26 +1,92 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Chat Rooms</title>
-</head>
-<body>
-    What chat room would you like to enter?<br/>
-    <input id="room-name-input" type="text" size="100"/><br/>
-    <input id="room-name-submit" type="button" value="Enter"/>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Django Channels Chat</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .welcome-container {
+        max-width: 600px;
+        margin: 100px auto;
+        padding: 30px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .popular-rooms {
+        margin-top: 20px;
+        padding: 15px;
+        background: #fff;
+        border-radius: 8px;
+      }
+      .room-tag {
+        display: inline-block;
+        margin: 5px;
+        padding: 5px 15px;
+        background: #e9ecef;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .room-tag:hover {
+        background: #dee2e6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container welcome-container">
+      <h2 class="mb-4 text-center">Welcome to Django Channels Chat</h2>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Enter a Chat Room</h5>
+          <div class="mb-3">
+            <input
+              id="room-name-input"
+              type="text"
+              class="form-control"
+              placeholder="Enter room name (e.g., general, python, help)"
+            />
+          </div>
+          <button id="room-name-submit" class="btn btn-primary w-100">
+            Join Room
+          </button>
+        </div>
+      </div>
+
+      <div class="popular-rooms">
+        <h6>Popular Rooms:</h6>
+        <div class="room-suggestions">
+          <span class="room-tag" onclick="joinRoom('general')">general</span>
+          <span class="room-tag" onclick="joinRoom('python')">python</span>
+          <span class="room-tag" onclick="joinRoom('django')">django</span>
+          <span class="room-tag" onclick="joinRoom('help')">help</span>
+        </div>
+      </div>
+    </div>
 
     <script>
-        document.querySelector('#room-name-input').focus();
-        document.querySelector('#room-name-input').onkeyup = function(e) {
-            if (e.keyCode === 13) {  // enter, return
-                document.querySelector('#room-name-submit').click();
-            }
-        };
+      function joinRoom(roomName) {
+        window.location.pathname = "/chat/" + roomName + "/";
+      }
 
-        document.querySelector('#room-name-submit').onclick = function(e) {
-            var roomName = document.querySelector('#room-name-input').value;
-            window.location.pathname = '/chat/' + roomName + '/';
-        };
+      document.querySelector("#room-name-input").focus();
+      document.querySelector("#room-name-input").onkeyup = function (e) {
+        if (e.keyCode === 13) {
+          // enter, return
+          document.querySelector("#room-name-submit").click();
+        }
+      };
+
+      document.querySelector("#room-name-submit").onclick = function (e) {
+        var roomName = document.querySelector("#room-name-input").value.trim();
+        if (roomName) {
+          joinRoom(roomName);
+        }
+      };
     </script>
-</body>
+  </body>
 </html>
