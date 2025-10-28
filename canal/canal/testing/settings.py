@@ -1,10 +1,11 @@
 import os
 
-from ..settings import *
+# Import all settings we want to override
+from ..settings import INSTALLED_APPS, CHANNEL_LAYERS
 
 """
-If you are using windows by default, the permissions to access subfolders for tests are disabled
-Activate them using NOSE_INCLUDE_EXE = 1 or an environment variable in your OS with the same name and value
+If you are using windows, permissions to access subfolders for tests are disabled by default.
+Activate them using NOSE_INCLUDE_EXE = 1 or an environment variable in your OS.
 """
 os.environ['NOSE_INCLUDE_EXE'] = "1"
 """
@@ -15,6 +16,7 @@ TESTING = True
 
 REUSE_DB = bool(int(os.environ.get("REUSE_DB", 0)))
 
+# Override database settings for testing
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

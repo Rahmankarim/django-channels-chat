@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.utils.safestring import mark_safe
 import json
 
 
@@ -9,6 +8,9 @@ class ChatView(TemplateView):
 
 
 def room(request, room_name):
+    # Encode the room name as JSON, but pass it as a regular string
+    # The template will handle it securely using JavaScript
     return render(request, 'chat/room.html', {
-        'room_name_json': mark_safe(json.dumps(room_name))
+        'room_name': room_name,  # Pass the raw room name
+        'room_name_json': json.dumps(room_name)  # Pass JSON-encoded string
     })
