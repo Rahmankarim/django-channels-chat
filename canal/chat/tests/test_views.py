@@ -19,6 +19,4 @@ class ChatViewTest(WebTest):
     def test_can_go_to_chat_room(self):
         """User can go to a chat room"""
         response = self.app.get(reverse('chat:room', args=['test']))
-
         self.assertEqual(200, response.status_code)
-

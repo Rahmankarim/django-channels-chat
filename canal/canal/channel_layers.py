@@ -1,10 +1,11 @@
 """
-Settings for the channel layers. Read connection information from environment
-so the service can run inside Docker/CI where Redis runs in a separate container.
+Settings for the channel layers. Read connection information from
+environment so the service can run inside Docker/CI where Redis runs
+in a separate container.
 """
 import os
 
-# Allow overriding Redis host/port via environment (defaults target compose service names)
+# Allow overriding Redis host/port via environment
 REDIS_HOST = os.environ.get("REDIS_HOST", "redis")
 REDIS_PORT = int(os.environ.get("REDIS_PORT", 6379))
 
