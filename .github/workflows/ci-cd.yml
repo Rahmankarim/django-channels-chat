@@ -119,7 +119,6 @@ jobs:
   docker-build-push:
     needs: test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
 
@@ -144,7 +143,6 @@ jobs:
   deploy:
     needs: docker-build-push
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     steps:
       - name: Deploy application
         run: |
