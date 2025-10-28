@@ -1,4 +1,5 @@
 channels
 django
-postgres
+psycopg2-binary
 redis
+daphne
