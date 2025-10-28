@@ -1,0 +1,5 @@
+channels
+django
+psycopg2-binary
+redis
+daphne
